@@ -1,0 +1,48 @@
+*** Setting ***
+Library           Selenium2Library
+Test Setup        Open My Page
+Test Teardown     Close Browser
+
+
+
+*** Test Case ***
+Login Success With Upper-Case Username
+    Input Text    user    USER
+    Input Text    pass    PASS
+    Click Element    login_btn
+    Wait Until Page Contain    สวัสดี,ชาวโลก
+
+
+Login Success With Lower-Case Username
+    Input Text    user    user
+    Input Text    pass    PASS
+    Click Element    login_btn
+    Wait Until Page Contain    สวัสดี,ชาวโลก
+
+Login Fail With Upper-Case Username But Wrong Password
+    Input Text    user    USER
+    Input Text    pass    pass
+    Click Element    login_btn
+    Wait Until Page Contain    กรุณาใส่ password ให้ถูกต้อง
+
+Login Fail With Lower-Case Username But Wrong Password
+    Input Text    user    user
+    Input Text    pass    pass
+    Click Element    login_btn
+    Wait Until Page Contain    กรุณาใส่ password ให้ถูกต้อง
+
+Login Fail With Empty Username
+    Input Text    user   ${Empty}
+    Input Text    pass   PASS
+    Click Element     login_btn
+    Wait Until Page Contain    กรุณาใส่ username ให้ถูกต้อง
+
+Login Fail With Empty Password
+    Input Text    user   user
+    Input Text    pass   ${Empty}
+    Click Element     login_btn
+    Wait Until Page Contain    กรุณาใส่ username ให้ถูกต้อง
+
+*** Keyword ***
+Open My Page
+    Open Browser     https://www.mylogin.co.th    browser=gc
